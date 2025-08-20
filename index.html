@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator - Peao</title>
+    <link rel="icon" type="image/png" href="img/qr_code.png">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo2"><img src="img/QR_logo.png"></a>
+      <!-- <ul class="nav-links">
+            <li><a href="#home">หน้าแรก</a></li>
+            <li><a href="#about">เกี่ยวกับ</a></li>
+            <li><a href="#services">บริการ</a></li>
+            <li><a href="#contact">ติดต่อ</a></li>
+        </ul>-->
+    </nav>
+
+    <div class="animated-bg">
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1 class="head"><img src="img/qr_code.png" alt="QR Code icon"><br>QR Code Generator</h1>
+            <p>
+                สร้าง QR Code ได้ง่ายๆ ในไม่กี่วินาที
+            </p>
+        </div>
+        <div class="main-content">
+            <div class="controls">
+                <div class="form-group">
+                    <label for="text-input" class="link"><img src="img/link.png" alt="Link icon">Text or URL</label>
+                    <textarea id="text-input" placeholder="ใส่ข้อความ, URL, หรือข้อมูลที่ต้องการสร้าง QR Code..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="color"><img src="img/color.png" alt="Color icon"> QR Code Color</label>
+                    <div class="color-input-group">
+                        <div class="color-input">
+                            <input type="color" id="fg-color" value="#000000">
+                            <span>สีตัว QR</span>
+                        </div>
+                        <div class="color-input">
+                            <input type="color" id="bg-color" value="#ffffff">
+                            <span>สีพื้นหลัง</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="size-slider" class="size"><img src="img/size.png" alt="Size icon"> QR Code size (px)</label>
+                    <div class="size-input">
+                        <input type="range" id="size-slider" class="size-slider" min="100" max="2000" value="256" step="10">
+                        <div class="size-input-wrapper">
+                            <input type="number" id="size-value" class="size-input-number" min="100" max="2000" value="256" step="1">
+                            <div class="input-number-buttons">
+                                <button type="button" class="btn-up" onclick="changeSize(1)">▲</button>
+                                <button type="button" class="btn-down" onclick="changeSize(-1)">▼</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="protech"><img src="img/protech.png" alt="Protection icon"> Error Correction Level</label>
+                    <div class="error-correction">
+                        <input type="radio" name="error-correction" value="L" id="error-L">
+                        <label for="error-L">L (7%)</label>
+                        
+                        <input type="radio" name="error-correction" value="M" id="error-M" checked>
+                        <label for="error-M">M (15%)</label>
+                        
+                        <input type="radio" name="error-correction" value="Q" id="error-Q">
+                        <label for="error-Q">Q (25%)</label>
+                        
+                        <input type="radio" name="error-correction" value="H" id="error-H">
+                        <label for="error-H">H (30%)</label>
+                    </div>
+                </div>
+                <button class="generate-btn" onclick="generateAndShowDownload()"><img src="img/qr_code.png" alt="QR icon">Generate QR Code</button>
+            </div>
+            <div class="preview-section">
+                <label for=""><strong>Preview QR</strong> </label>
+                <div class="qr-preview" id="qr-preview">
+                    <div class="placeholder">
+                        <div class="placeholder-icon">📱</div>
+                        <p>QR Code จะแสดงที่นี่</p>
+                        <p style="font-size: 0.9em; margin-top: 5px;">ใส่ข้อความและปรับแต่งเพื่อดูพรีวิว</p>
+                    </div>
+                </div>
+                <div class="download-options" id="download-options">
+                    <button class="download-btn" onclick="downloadQR('png')">
+                        <img src="img/download_icon.png" alt="PNG icon">Download PNG
+                    </button>
+                    <button class="download-btn" onclick="downloadQR('jpeg')">
+                        <img src="img/download_icon.png" alt="JPG icon">Download JPG
+                    </button>
+                    <button class="download-btn" onclick="downloadQR('svg')">
+                        <img src="img/download_icon.png" alt="SVG icon">Download SVG
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
