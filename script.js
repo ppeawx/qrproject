@@ -164,7 +164,7 @@ function downloadQR(format) {
                 width: size,
                 height: size,
                 colorDark: fgColor,
-                colorLight: 'rgba(0,0,0,0)', // กำหนดสีพื้นหลังเป็นโปร่งใสสำหรับ Canvas
+                colorLight: 'rgba(0,0,0,0)', // บรรทัดนี้ทำให้พื้นหลังโปร่งใส
                 correctLevel: QRCode.CorrectLevel[errorCorrection],
             });
             
@@ -179,9 +179,11 @@ function downloadQR(format) {
                 let filename;
 
                 if (format === 'png') {
+                    // PNG รองรับพื้นหลังโปร่งใส
                     downloadLink = canvas.toDataURL('image/png');
                     filename = `qr-code.png`;
                 } else if (format === 'jpeg') {
+                    // JPEG ไม่รองรับพื้นหลังโปร่งใส จึงต้องสร้างพื้นหลังสีขาว
                     const jpegCanvas = document.createElement('canvas');
                     jpegCanvas.width = canvas.width;
                     jpegCanvas.height = canvas.height;
